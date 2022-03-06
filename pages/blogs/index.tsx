@@ -54,7 +54,7 @@ const BlogItem = styled.div`
 `
 
 const Title = styled.div`
-  color: ${colors.text_1};
+  color: ${colors.text_2};
   font-style: italic;
   cursor: pointer;
 

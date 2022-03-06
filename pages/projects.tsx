@@ -6,8 +6,6 @@ import { colors, project as sideProjects } from '../lib'
 
 const projects: NextPage = () => (
   <Layout>
-    <Title>Click One!⬇️</Title>
-    
     {sideProjects.map(({ name, description, icon, key }) => (
       <ProjectItem key={key}>
         <Info>
@@ -22,12 +20,6 @@ const projects: NextPage = () => (
 )
 
 export default projects
-
-const Title = styled.div`
-  font-size: 18px;
-  margin-bottom: 16px;
-  color: ${colors.text_2};
-`
 
 const ProjectItem = styled.div`
   width: 100%;

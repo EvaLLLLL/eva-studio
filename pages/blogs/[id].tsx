@@ -31,36 +31,38 @@ const Blog: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
         <Date>{date}</Date>
       </Info>
 
-      <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkParse]}
-        components={{
-          code({ inline, className, children, ...props }) {
-            const match = /language-(\w+)/.exec(className || '')
-            return !inline && match ? (
-              <SyntaxHighlighter
-                style={materialDark}
-                customStyle={{
-                  fontSize: 13,
-                  borderRadius: '8px',
-                  fontFamily: 'JetBrains Mono',
-                }}
-                showLineNumbers={true}
-                language={match[1]}
-                PreTag="div"
-                {...props}
-              >
-                {String(children).replace(/\n$/, '')}
-              </SyntaxHighlighter>
-            ) : (
-              <code className={className} {...props}>
-                {children}
-              </code>
-            )
-          },
-        }}
-      >
-        {content}
-      </ReactMarkdown>
+      <MarkdownWrapper>
+        <ReactMarkdown
+          remarkPlugins={[remarkGfm, remarkParse]}
+          components={{
+            code({ inline, className, children, ...props }) {
+              const match = /language-(\w+)/.exec(className || '')
+              return !inline && match ? (
+                <SyntaxHighlighter
+                  style={materialDark}
+                  customStyle={{
+                    fontSize: 13,
+                    borderRadius: '8px',
+                    fontFamily: 'JetBrains Mono',
+                  }}
+                  showLineNumbers={true}
+                  language={match[1]}
+                  PreTag="div"
+                  {...props}
+                >
+                  {String(children).replace(/\n$/, '')}
+                </SyntaxHighlighter>
+              ) : (
+                <SingleCode className={className} {...props}>
+                  {children}
+                </SingleCode>
+              )
+            },
+          }}
+        >
+          {content}
+        </ReactMarkdown>
+      </MarkdownWrapper>
     </Layout>
   )
 }
@@ -105,4 +107,44 @@ const GobackButton = styled.div`
   color: ${colors.text_2};
   cursor: pointer;
   margin-bottom: 6px;
+`
+
+const SingleCode = styled.span`
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(175, 184, 193, 0.2);
+  border-radius: 6px;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas,
+    Liberation Mono, monospace;
+`
+
+const MarkdownWrapper = styled.div`
+  line-height: 1.5;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+
+  img {
+    max-width: 666px;
+  }
+
+  a {
+    color: ${colors.highlight};
+    &:hover {
+      text-decoration-line: underline;
+    }
+  }
+
+  blockquote {
+    border-left: 4px solid #d3d5db;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+  }
+
+  blockquote p {
+    color: #57606a;
+    display: inline;
+    font-size: 16px;
+    line-height: 1.5;
+  }
 `
