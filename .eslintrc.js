@@ -26,6 +26,7 @@ module.exports = {
     'no-unused-expressions': ['off'],
     '@typescript-eslint/no-unused-expressions': ['error'],
     'no-shadow': ['off'],
+    'arrow-body-style': ['error', 'as-needed'],
     '@typescript-eslint/no-shadow': ['error'],
     '@typescript-eslint/no-unused-vars': ['error'],
     '@typescript-eslint/no-use-before-define': ['off'],
