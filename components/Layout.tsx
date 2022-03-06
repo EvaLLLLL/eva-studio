@@ -20,7 +20,7 @@ export const Layout: NextComponentType = ({ children }) => {
         <Link href="/" passHref={true}>
           <Logo>
             <Image src="/lightning.svg" width="36" height="36" alt="logo" />
-            <Name>Eva's Studio</Name>
+            <Name>Eva&apos;s Studio</Name>
           </Logo>
         </Link>
 
