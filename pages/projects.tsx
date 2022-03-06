@@ -2,7 +2,7 @@ import { NextPage } from 'next'
 import Image from 'next/image'
 import { Layout } from '../components'
 import styled from 'styled-components'
-import { colors, projects as sideProjects } from '../lib'
+import { colors, project as sideProjects } from '../lib'
 
 const projects: NextPage = () => (
   <Layout>

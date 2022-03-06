@@ -1,4 +1,4 @@
-export const projects = [
+export const project = [
   {
     key: 'coriander',
     name: '香菜 UI',
