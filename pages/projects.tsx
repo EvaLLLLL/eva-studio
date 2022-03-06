@@ -60,5 +60,5 @@ const ItemName = styled.div`
 
 const ItemContent = styled.div`
   font-size: 14px;
-  color: rgba(6, 12, 25, 0.65);
+  color: ${colors.text_3};
 `

@@ -36,6 +36,8 @@ export const Layout: NextComponentType = ({ children }) => {
       </Navigation>
 
       <ChildrenWrapper>{children}</ChildrenWrapper>
+
+      <Footer>© 2022-present Eva</Footer>
     </Wrapper>
   )
 }
@@ -54,19 +56,19 @@ const ChildrenWrapper = styled.div`
   margin-top: 24px;
   overflow: auto;
   padding: 0 24px;
-  
+
   &::-webkit-scrollbar {
     width: 6px;
     height: 6px;
     background: transparent;
   }
-  
+
   &::-webkit-scrollbar-thumb {
     background: transparent;
     border-radius: 4px;
     transition: background-color 0.3s;
   }
-  
+
   &:hover::-webkit-scrollbar-thumb {
     background: #d8d8d8;
   }
@@ -114,4 +116,11 @@ const Navigation = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
+`
+
+const Footer = styled.div`
+  font-size: 12px;
+  color: ${colors.text_4};
+  margin: auto;
+  padding: 0.6rem 0;
 `
