@@ -14,11 +14,16 @@ date: '2020-01-02'
 正文正文正文正文正文正文
 正文正文正文正文正文正文
 
-- [ ] haha
+> hiasihdiashdias
+> asidjas
+> hdaishdiad
 
-> hihi
 
-```javascript
+```tsx
 const a = 0
 const b = 1
+
+export const App: React.FC = () => {
+	return <div>hi</div>
+}
 ```
