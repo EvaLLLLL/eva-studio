@@ -8,6 +8,10 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { materialDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import styled from 'styled-components'
+import { colors } from '../../lib'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const Blog: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
   blogData,
@@ -15,9 +19,18 @@ const Blog: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
   const { title, content, date } = blogData
   return (
     <Layout>
-      <div>
-        {title} {date}
-      </div>
+      <Link href="/blogs" passHref>
+        <GobackButton>
+          <Image src="/doubleleft.svg" width={24} height={24} alt="goback" />
+          <span>Go Back</span>
+        </GobackButton>
+      </Link>
+
+      <Info>
+        <Title>{title}</Title>
+        <Date>{date}</Date>
+      </Info>
+
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkParse]}
         components={{
@@ -68,3 +81,28 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const blogData = await getBlogData(params.id)
   return { props: { blogData } }
 }
+
+const Info = styled.div`
+  text-align: center;
+`
+
+const Title = styled.div`
+  font-size: 24px;
+  color: ${colors.text_1};
+`
+
+const Date = styled.div`
+  font-size: 14px;
+  color: ${colors.text_3};
+  margin-top: 8px;
+`
+
+const GobackButton = styled.div`
+  display: flex;
+  align-items: center;
+  font-style: italic;
+  font-weight: 300;
+  color: ${colors.text_2};
+  cursor: pointer;
+  margin-bottom: 6px;
+`
