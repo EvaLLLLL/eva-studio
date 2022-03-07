@@ -88,6 +88,8 @@ const MenuItem = styled.div`
 const MenuLabel = styled.div<{ isActive: boolean }>`
   cursor: ${({ isActive }) => (isActive ? 'default' : 'pointer')};
   color: ${({ isActive }) => (isActive ? colors.highlight : colors.text_1)};
+  text-decoration: ${({ isActive }) => (isActive ? 'underline' : 'none')};
+
   font-weight: 300;
 
   &:hover {

@@ -3,17 +3,17 @@ import { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import { Layout } from '../../components'
 import { getAllBlogIds, getBlogData } from '../../lib/blog'
 import { BlogData } from '../../types'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import { materialDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { materialDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 import styled from 'styled-components'
 import { colors } from '../../lib'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const Blog: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
+const Blogs: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
   blogData,
 }) => {
   const { title, content, date } = blogData
@@ -67,7 +67,7 @@ const Blog: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
   )
 }
 
-export default Blog
+export default Blogs
 
 export const getStaticPaths: GetStaticPaths = () => {
   const paths = getAllBlogIds()
