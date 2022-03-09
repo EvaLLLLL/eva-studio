@@ -2,7 +2,7 @@ import GithubIcon from '../public/github.svg'
 import WechatIcon from '../public/wechat.svg'
 import EmailIcon from '../public/email.svg'
 
-export const aboutItems = [
+export const contact = [
   {
     name: 'Github',
     address: 'https://github.com/EvaLLLLL',
