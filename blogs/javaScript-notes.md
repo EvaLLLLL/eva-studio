@@ -15,7 +15,7 @@ let user = 'John'
 const myBirthday = '18.04.1982';
 ```
 ### var
-**1. **`var`** 声明的变量只有函数作用域和全局作用域，没有块级作用域** 
+**1. **`var`** 声明的变量只有函数作用域和全局作用域，没有块级作用域**
 
 - 不是声明在函数内部，会被提升为全局变量
 ```javascript
@@ -48,7 +48,7 @@ var user = "John"; // 这个 "var" 无效（因为变量已经声明过了）
 
 alert(user); // John
 ```
-**3. **`var`** 声明的变量，可以在其声明语句前被使用，声明会被提升，但是赋值不会。**
+**3.**`var`**声明的变量，可以在其声明语句前被使用，声明会被提升，但是赋值不会。**
 
 例子：
 ```javascript
@@ -181,13 +181,147 @@ result = a && b
 result = !a
 ```
 ## 空值合并 '??'
-空值合并运算符（nullish coalescing operator）的写法为两个问号 `??`
+空值合并运算符（nullish coalescing operator）的写法为两个问号 `??`，如果第一个参数不是 null/undefined，则 ?? 返回第一个参数。否则，返回第二个参数
 ```javascript
 result = (a !== null && a !== undefined) ? a : b;
+// 上下等同
 result = a ?? b
 ```
 
+# Object（对象）
+## 基础
+### 构造函数/字面量
+```javascript
+let user = new Object(); // “构造函数” 的语法
+let user = {};  // “字面量” 的语法
+```
+```javascript
+let user = {     // 一个对象
+  name: "John",  // 键 "name"，值 "John"
+  age: 30        // 键 "age"，值 30
+};
+```
+### 计算属性
+```javascript
+let fruit = "apple"
+let bag = {
+  [fruit]: 5,
+}
+```
+### 属性名称限制
 
+- 不能是保留字
+- 其他类型被作为对象属性的键时，会被转换成字符串
+- `__proto__` 不能设置为一个非对象的值
+```javascript
+let obj = {};
+obj.__proto__ = 5; // 分配一个数字
+alert(obj.__proto__); // [object Object] — 值为对象，与预期结果不同
+```
+### 属性存在性测试，`in` 操作符
 
+- 读取不存在的属性会得到 `undefined`
+- 检查属性是否存在可以使用操作符 `in`，注意原本存储的就是 `undefined` 的时候，`in` 的判断仍然是正确的
+```javascript
+let user = { name: "John", age: 30 }
+console.log("age" in user) // true
+console.log("bala" in user) // false
 
+let obj = { test: undefined }
+console.log( obj.test ); // 显示 undefined，所以属性不存在？
+console( "test" in obj ); // true，属性存在！
+```
+### `for...in...` 循环
+```javascript
+let user = {
+  name: "John",
+  age: 30,
+  isAdmin: true
+};
 
+for (let key in user) {
+  // keys
+  alert( key );  // name, age, isAdmin
+  // 属性键的值
+  alert( user[key] ); // John, 30, true
+}
+```
+### 对象的顺序
+整数属性会被进行排序，其他属性则按照创建的顺序显示，“整数属性”指的是一个可以在不做任何更改的情况下与一个整数进行相互转换的字符串
+```javascript
+let codes = {
+  "49": "Germany",
+  "41": "Switzerland",
+  "44": "Great Britain",
+  // ..,
+  "1": "USA"
+};
+
+for(let code in codes) {
+  alert(code); // 1, 41, 44, 49
+}
+```
+为了解决电话号码的问题，需要给每个键名加一个加号 "+" 前缀，以达到根据创建时间排序的目的
+```javascript
+let codes = {
+  "+49": "Germany",
+  "+41": "Switzerland",
+  "+44": "Great Britain",
+  // ..,
+  "+1": "USA"
+};
+
+for (let code in codes) {
+  alert( +code ); // 49, 41, 44, 1
+}
+```
+## 对象引用和复制
+与原始类型相比，对象的根本区别之一是对象是“通过引用”被存储和复制的，与原始类型值相反：字符串，数字，布尔值等 —— 始终是以“整体值”的形式被复制的。
+
+**赋值了对象的变量存储的不是对象本身，而是该对象“在内存中的地址” —— 换句话说就是对该对象的“引用”。**
+
+**当一个对象变量被复制 —— 引用被复制，而该对象自身并没有被复制。**
+### 克隆和合并（浅拷贝）
+```javascript
+let user = {
+  name: "John",
+  age: 30
+};
+
+let clone = {}; // 新的空对象
+
+// 将 user 中所有的属性拷贝到其中
+for (let key in user) {
+  clone[key] = user[key];
+}
+
+// 现在 clone 是带有相同内容的完全独立的对象
+clone.name = "Pete"; // 改变了其中的数据
+
+alert( user.name ); // 原来的对象中的 name 属性依然是 John
+```
+```javascript
+let user = { name: "John" };
+
+let permissions1 = { canView: true };
+let permissions2 = { canEdit: true };
+
+// 将 permissions1 和 permissions2 中的所有属性都拷贝到 user 中
+Object.assign(user, permissions1, permissions2);
+
+// 现在 user = { name: "John", canView: true, canEdit: true }
+```
+### 垃圾回收
+[v8之旅：垃圾回收](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection)
+#### 什么样的值会被回收
+
+1. “可达”值是那些以某种方式可访问或可用的值。它们一定是存储在内存中的。如果一个值可以通过引用或引用链从根访问任何其他值，则认为该值是可达的。
+1. 几个对象相互引用，但外部没有对其任意对象的引用，这些对象也可能是不可达的，并被从内存中删除。
+#### 怎么样回收
+垃圾回收的基本算法被称为 “mark-and-sweep”。
+
+- 垃圾收集器找到所有的根，并“标记”（记住）它们
+- 然后它遍历并“标记”来自它们的所有引用
+- 然后它遍历标记的对象并标记 **它们的** 引用。所有被遍历到的对象都会被记住，以免将来再次遍历到同一个对象
+- ……如此操作，直到所有可达的（从根部）引用都被访问到
+- 没有被标记的对象都会被删除
