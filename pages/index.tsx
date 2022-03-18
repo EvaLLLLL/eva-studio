@@ -1,12 +1,12 @@
 import { NextPage } from 'next'
 import styled from 'styled-components'
 import { Layout } from '../components'
-import { contact, colors } from '../lib'
+import { contacts, colors } from '../lib'
 
 const Home: NextPage = () => (
   <Layout>
     <Contacts>
-      {contact.map(({ name, address, Icon }) => (
+      {contacts.map(({ name, address, Icon }) => (
         <AboutItem key={name} onClick={() => window.open(address, '__blank')}>
           <Icon />
           <Name>{name}</Name>
@@ -38,7 +38,7 @@ const AboutItem = styled.div`
 
 const Contacts = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 `
 
 const Name = styled.div`
