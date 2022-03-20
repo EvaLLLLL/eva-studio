@@ -39,6 +39,11 @@ const AboutItem = styled.div`
 const Contacts = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
 `
 
 const Name = styled.div`

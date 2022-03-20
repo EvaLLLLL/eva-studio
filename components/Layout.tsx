@@ -14,6 +14,10 @@ export const Layout: NextComponentType = ({ children }) => {
       <Head>
         <title>W I P</title>
         <link rel="icon" href="/lightning.svg" />
+        <meta
+          name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
+        />
       </Head>
 
       <Navigation>
@@ -49,6 +53,10 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+
+  @media (max-width: 500px) {
+    width: auto;
+  }
 `
 
 const ChildrenWrapper = styled.div`
