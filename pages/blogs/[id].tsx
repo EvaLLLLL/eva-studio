@@ -17,6 +17,14 @@ const Blogs: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
   blogData,
 }) => {
   const { title, content, date } = blogData
+  const markdownRef = React.useRef<HTMLDivElement>(null)
+  const [markdownWidth, setMarkdownWidth] = React.useState(0)
+
+  React.useEffect(
+    () => setMarkdownWidth(markdownRef.current?.clientWidth || 0),
+    [],
+  )
+
   return (
     <Layout>
       <Link href="/blogs" passHref>
@@ -31,7 +39,7 @@ const Blogs: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
         <Date>{date}</Date>
       </Info>
 
-      <MarkdownWrapper>
+      <MarkdownWrapper ref={markdownRef} width={markdownWidth}>
         <ReactMarkdown
           remarkPlugins={[remarkGfm, remarkParse]}
           components={{
@@ -119,13 +127,19 @@ const SingleCode = styled.span`
     Liberation Mono, monospace;
 `
 
-const MarkdownWrapper = styled.div`
+const MarkdownWrapper = styled.div<{ width?: number }>`
   line-height: 1.5;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
 
   img {
     max-width: 666px;
+  }
+
+  @media (max-width: 500px) {
+    img {
+      max-width: ${props => `${props.width}px` ?? '80vw'};
+    }
   }
 
   a {
