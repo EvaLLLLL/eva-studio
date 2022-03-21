@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { routes, colors } from '../lib'
 import { useRouter } from 'next/router'
+import { ToastHost } from './ToastHost'
 
 export const Layout: NextComponentType = ({ children }) => {
   const { pathname } = useRouter()
@@ -20,6 +21,8 @@ export const Layout: NextComponentType = ({ children }) => {
           content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"
         />
       </Head>
+
+      <ToastHost />
 
       <Navigation>
         <Link href="/" passHref={true}>

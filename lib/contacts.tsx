@@ -3,6 +3,7 @@ import WechatIcon from '../public/wechat.svg'
 import EmailIcon from '../public/email.svg'
 import ResumeIcon from '../public/resume.svg'
 import copy from 'copy-to-clipboard'
+import toast from 'react-hot-toast'
 
 export const contacts = [
   {
@@ -21,6 +22,7 @@ export const contacts = [
     Icon: () => <WechatIcon width={24} height={24} />,
     callback: () => {
       copy('_lyhlyh_')
+      toast.success('已复制微信 Id')
     },
   },
   {

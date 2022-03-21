@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import styled from 'styled-components'
 import Image from 'next/image'
-import { Blogs, Layout, Projects, SectionHeader } from '../components'
+import { Blogs, Layout, Projects, SectionHeader, Portal } from '../components'
 import { contacts, colors, projects as sideProjects } from '../lib'
 import { getSortedBlogsData } from '../lib/blog'
 import { BlogData, ProjectData } from '../types'
