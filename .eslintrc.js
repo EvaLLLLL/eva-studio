@@ -71,7 +71,7 @@ module.exports = {
     'react/prop-types': ['off'],
     'react/display-name': ['off'],
     'react/self-closing-comp': ['error'],
-    'react-hooks/rules-of-hooks': ['error'],
+    'react-hooks/rules-of-hooks': ['off'],
     'react-hooks/exhaustive-deps': ['error'],
     'jsx-a11y/anchor-is-valid': ['off'],
   },

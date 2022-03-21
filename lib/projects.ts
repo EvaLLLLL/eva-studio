@@ -1,4 +1,6 @@
-export const project = [
+import { ProjectData } from '../types'
+
+export const projects: ProjectData[] = [
   {
     key: 'coriander',
     name: '香菜 UI',

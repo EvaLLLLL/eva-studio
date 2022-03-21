@@ -4,3 +4,10 @@ export type BlogData = {
   date: string
   content: string
 }
+
+export type ProjectData = {
+  key: string
+  name: string
+  description: string
+  icon: string
+}

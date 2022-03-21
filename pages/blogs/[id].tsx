@@ -11,7 +11,7 @@ import remarkParse from 'remark-parse'
 import styled from 'styled-components'
 import { colors } from '../../lib'
 import Image from 'next/image'
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 const Blogs: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
   blogData,
@@ -19,6 +19,7 @@ const Blogs: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
   const { title, content, date } = blogData
   const markdownRef = React.useRef<HTMLDivElement>(null)
   const [markdownWidth, setMarkdownWidth] = React.useState(0)
+  const router = useRouter()
 
   React.useEffect(
     () => setMarkdownWidth(markdownRef.current?.clientWidth || 0),
@@ -27,12 +28,10 @@ const Blogs: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
 
   return (
     <Layout>
-      <Link href="/blogs" passHref>
-        <GobackButton>
-          <Image src="/doubleleft.svg" width={24} height={24} alt="goback" />
-          <span>Go Back</span>
-        </GobackButton>
-      </Link>
+      <GobackButton onClick={() => router.back()}>
+        <Image src="/doubleleft.svg" width={24} height={24} alt="goback" />
+        <span>Go Back</span>
+      </GobackButton>
 
       <Info>
         <Title>{title}</Title>

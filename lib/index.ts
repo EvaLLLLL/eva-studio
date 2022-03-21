@@ -1,4 +1,4 @@
 export * from './routes'
 export * from './colors'
-export * from './project'
+export * from './projects'
 export * from './contacts'
