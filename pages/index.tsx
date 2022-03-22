@@ -19,9 +19,8 @@ const Home: NextPage<{
         <Introduction>
           <Image src="/flight.png" alt="flight" width={256} height={200} />
           <div>⚡️⚡️⚡️</div>
-          <Description>
-            前端工程师 / 有三只可爱的猫咪 / 文档迁移到本站 ing / 老头环 ing
-          </Description>
+          <Description>前端工程师 / 有三只可爱猫咪 / 寻找工作机会中</Description>
+          <Description>本站正在建设&迁移文档 / 欢迎错误指正&交流</Description>
         </Introduction>
       
         <LatestBlogs>
