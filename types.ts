@@ -10,4 +10,5 @@ export type ProjectData = {
   name: string
   description: string
   icon: string
+  address: string
 }

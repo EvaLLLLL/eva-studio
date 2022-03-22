@@ -9,8 +9,12 @@ export const Projects: React.FC<{
   horizontal?: boolean
 }> = ({ projects, horizontal }) => (
   <Wrapper horizontal={horizontal}>
-    {projects.map(({ name, description, icon, key }) => (
-      <ProjectItem key={key} horizontal={horizontal}>
+    {projects.map(({ name, description, icon, key, address }) => (
+      <ProjectItem
+        key={key}
+        horizontal={horizontal}
+        onClick={() => window.open(address)}
+      >
         <Info>
           <ItemName horizontal={horizontal}>{name}</ItemName>
 
