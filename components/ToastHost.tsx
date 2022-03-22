@@ -2,8 +2,7 @@ import React from 'react'
 import { Toaster } from 'react-hot-toast'
 import { colors } from '../lib'
 
-export const ToastHost: React.FC = () => {
-  return (
+export const ToastHost: React.FC = () => (
     <Toaster
       toastOptions={{
         success: {
@@ -15,4 +14,3 @@ export const ToastHost: React.FC = () => {
       }}
     />
   )
-}
