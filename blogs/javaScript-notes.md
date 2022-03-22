@@ -1,5 +1,5 @@
 ---
-title: '[WIP]JavaScript Notes'
+title: '[FixMe]JavaScript Notes'
 date: '2022-03-10'
 ---
 

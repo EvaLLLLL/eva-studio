@@ -8,28 +8,33 @@ import { BlogData, ProjectData } from '../types'
 
 const Home: NextPage<{
   latestBlogs: BlogData[]
+  allBlogsData: BlogData[]
   latestProjects: ProjectData[]
-}> = ({ latestBlogs, latestProjects }) => (
-  <Layout>
+}> = ({ latestBlogs, latestProjects, allBlogsData }) => {
+  console.log(allBlogsData);
+  
+  return   <Layout>
     <Wrapper>
       <InfosWrapper>
         <Introduction>
           <Image src="/flight.png" alt="flight" width={256} height={200} />
           <div>⚡️⚡️⚡️</div>
-          <Description>前端工程师 / 有三只可爱的猫咪 / 老头环 ing / 试图学习 Golang ing</Description>
+          <Description>
+            前端工程师 / 有三只可爱的猫咪 / 文档迁移到本站 ing / 老头环 ing
+          </Description>
         </Introduction>
-
+      
         <LatestBlogs>
-          <SectionHeader name="Latest Posts" href="/blogs" />
+          <SectionHeader name="Latest blogs" href="/blogs" />
           <Blogs blogs={latestBlogs} smaller={true} />
         </LatestBlogs>
-
+      
         <PinedProjects>
-          <SectionHeader name="Pined Projects" href="/projects" />
+          <SectionHeader name="Pinned projects" href="/projects" />
           <Projects projects={latestProjects} horizontal={true} />
         </PinedProjects>
       </InfosWrapper>
-
+    
       <Contacts>
         {contacts.map(({ name, address, Icon, callback }) => (
           <AboutItem
@@ -49,16 +54,15 @@ const Home: NextPage<{
       </Contacts>
     </Wrapper>
   </Layout>
-)
+}
 
 export default Home
 
 export async function getStaticProps() {
   const latestBlogs = getSortedBlogsData()?.slice(0, 3)
   const latestProjects = sideProjects.slice(0, 3)
-
   return {
-    props: { latestBlogs, latestProjects },
+    props: { allBlogsData: getSortedBlogsData(), latestBlogs, latestProjects },
   }
 }
 
@@ -89,9 +93,9 @@ const PinedProjects = styled.div`
 
 const Description = styled.div`
   text-align: center;
-  color: ${colors.text_3};
+  color: ${colors.text_4};
   margin-top: 8px;
-  font-size: 14px;
+  font-size: 13px;
 `
 
 const Introduction = styled.div`
