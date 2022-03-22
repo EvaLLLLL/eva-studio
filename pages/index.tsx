@@ -1,7 +1,7 @@
 import { NextPage } from 'next'
 import styled from 'styled-components'
 import Image from 'next/image'
-import { Blogs, Layout, Projects, SectionHeader, Portal } from '../components'
+import { Blogs, Layout, Projects, SectionHeader } from '../components'
 import { contacts, colors, projects as sideProjects } from '../lib'
 import { getSortedBlogsData } from '../lib/blog'
 import { BlogData, ProjectData } from '../types'
@@ -15,17 +15,17 @@ const Home: NextPage<{
       <InfosWrapper>
         <Introduction>
           <Image src="/flight.png" alt="flight" width={256} height={200} />
-          <Description>⚡️⚡️⚡️</Description>
-          <Description>Welcome, Hope you enjoy</Description>
+          <div>⚡️⚡️⚡️</div>
+          <Description>前端工程师 / 有三只可爱的猫咪 / 老头环 ing / 试图学习 Golang ing</Description>
         </Introduction>
 
         <LatestBlogs>
-          <SectionHeader name="最新文章" href="/blogs" />
+          <SectionHeader name="Latest Posts" href="/blogs" />
           <Blogs blogs={latestBlogs} smaller={true} />
         </LatestBlogs>
 
         <PinedProjects>
-          <SectionHeader name="最新项目" href="/projects" />
+          <SectionHeader name="Pined Projects" href="/projects" />
           <Projects projects={latestProjects} horizontal={true} />
         </PinedProjects>
       </InfosWrapper>
@@ -91,7 +91,7 @@ const Description = styled.div`
   text-align: center;
   color: ${colors.text_3};
   margin-top: 8px;
-  font-size: 18px;
+  font-size: 14px;
 `
 
 const Introduction = styled.div`

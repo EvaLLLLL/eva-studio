@@ -21,11 +21,17 @@ export const Projects: React.FC<{
           {!!horizontal ? null : <ItemContent>{description}</ItemContent>}
         </Info>
 
-        <Image height={36} width={36} src={icon} alt={key} />
+        <IconWrapper>
+          <Image height={36} width={36} src={icon} alt={key} />
+        </IconWrapper>
       </ProjectItem>
     ))}
   </Wrapper>
 )
+
+const IconWrapper = styled.div`
+  padding-left: 48px;
+`
 
 const Wrapper = styled.div<{ horizontal?: boolean }>`
   margin-top: 24px;
@@ -87,5 +93,6 @@ const ItemName = styled.div<{ horizontal?: boolean }>`
 
 const ItemContent = styled.div`
   font-size: 14px;
+  line-height: 1.5;
   color: ${colors.text_3};
 `

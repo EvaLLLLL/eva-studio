@@ -36,7 +36,9 @@ export const Layout: NextComponentType = ({ children }) => {
           {routes.map(({ path, name }) => (
             <MenuItem key={path}>
               <Link key={path} href={path} passHref={true}>
-                <MenuLabel isActive={pathname === path}>{name}</MenuLabel>
+                <MenuLabel isActive={pathname.substring(0, 6) === path}>
+                  {name}
+                </MenuLabel>
               </Link>
             </MenuItem>
           ))}
