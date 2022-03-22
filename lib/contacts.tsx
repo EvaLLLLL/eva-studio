@@ -27,7 +27,7 @@ export const contacts = [
   },
   {
     name: 'Resume',
-    address: 'https://cv-evalllll.vercel.app/',
+    address: 'https://resume-evalllll.vercel.app/',
     Icon: () => <ResumeIcon width={24} height={24} />,
   },
 ]
