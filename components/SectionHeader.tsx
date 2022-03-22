@@ -31,9 +31,13 @@ const Wrapper = styled.div`
 `
 
 const Label = styled.div`
-	line-height: 18px;
-	margin-right: 4px;
-	transform: translateY(-1px);
+  line-height: 18px;
+  margin-right: 4px;
+  transform: translateY(-1px);
+
+  &:hover {
+    color: ${colors.highlight};
+  }
 `
 
 const SectionTitle = styled.div`

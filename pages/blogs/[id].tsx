@@ -30,7 +30,7 @@ const Blogs: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
     <Layout>
       <GobackButton onClick={() => router.back()}>
         <Image src="/doubleleft.svg" width={24} height={24} alt="goback" />
-        <span>Go Back</span>
+        <GobackLabel>Go Back</GobackLabel>
       </GobackButton>
 
       <Info>
@@ -93,6 +93,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const Info = styled.div`
   text-align: center;
+`
+
+const GobackLabel = styled.span`
+  &:hover {
+    color: ${colors.highlight};
+  }
 `
 
 const Title = styled.div`
