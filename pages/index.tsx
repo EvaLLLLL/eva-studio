@@ -8,51 +8,52 @@ import { BlogData, ProjectData } from '../types'
 
 const Home: NextPage<{
   latestBlogs: BlogData[]
-  allBlogsData: BlogData[]
   latestProjects: ProjectData[]
-}> = ({ latestBlogs, latestProjects, allBlogsData }) => {
-  console.log(allBlogsData);
-  
-  return   <Layout>
-    <Wrapper>
-      <InfosWrapper>
-        <Introduction>
-          <Image src="/flight.png" alt="flight" width={256} height={200} />
-          <div>⚡️⚡️⚡️</div>
-          <Description>前端工程师 / 有三只可爱猫咪 / 寻找工作机会中</Description>
-          <Description>本站正在建设&迁移文档 / 欢迎错误指正&交流</Description>
-        </Introduction>
-      
-        <LatestBlogs>
-          <SectionHeader name="Latest blogs" href="/blogs" />
-          <Blogs blogs={latestBlogs} smaller={true} />
-        </LatestBlogs>
-      
-        <PinedProjects>
-          <SectionHeader name="Pinned projects" href="/projects" />
-          <Projects projects={latestProjects} horizontal={true} />
-        </PinedProjects>
-      </InfosWrapper>
-    
-      <Contacts>
-        {contacts.map(({ name, address, Icon, callback }) => (
-          <AboutItem
-            key={name}
-            onClick={() => {
-              if (callback) {
-                callback()
-              } else {
-                window.open(address, '__blank')
-              }
-            }}
-          >
-            <Icon />
-            <Name>{name}</Name>
-          </AboutItem>
-        ))}
-      </Contacts>
-    </Wrapper>
-  </Layout>
+}> = ({ latestBlogs, latestProjects }) => {
+  return (
+    <Layout>
+      <Wrapper>
+        <InfosWrapper>
+          <Introduction>
+            <Image src="/flight.png" alt="flight" width={256} height={200} />
+            <div>⚡️⚡️⚡️</div>
+            <Description>
+              前端工程师 / 有三只可爱猫咪 / 寻找工作机会中
+            </Description>
+            <Description>本站正在建设&迁移文档 / 欢迎错误指正&交流</Description>
+          </Introduction>
+
+          <LatestBlogs>
+            <SectionHeader name="Latest blogs" href="/blogs" />
+            <Blogs blogs={latestBlogs} smaller={true} />
+          </LatestBlogs>
+
+          <PinedProjects>
+            <SectionHeader name="Pinned projects" href="/projects" />
+            <Projects projects={latestProjects} horizontal={true} />
+          </PinedProjects>
+        </InfosWrapper>
+
+        <Contacts>
+          {contacts.map(({ name, address, Icon, callback }) => (
+            <AboutItem
+              key={name}
+              onClick={() => {
+                if (callback) {
+                  callback()
+                } else {
+                  window.open(address, '__blank')
+                }
+              }}
+            >
+              <Icon />
+              <Name>{name}</Name>
+            </AboutItem>
+          ))}
+        </Contacts>
+      </Wrapper>
+    </Layout>
+  )
 }
 
 export default Home
@@ -61,7 +62,7 @@ export async function getStaticProps() {
   const latestBlogs = getSortedBlogsData()?.slice(0, 3)
   const latestProjects = sideProjects.slice(0, 3)
   return {
-    props: { allBlogsData: getSortedBlogsData(), latestBlogs, latestProjects },
+    props: { latestBlogs, latestProjects },
   }
 }
 
