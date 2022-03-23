@@ -1,6 +1,6 @@
 ---
-title: '[FixMe]JavaScript Notes'
-date: '2022-03-10'
+title: '[FixMe]Modern JavaScript Notes'
+date: '2022-01-10'
 ---
 
 # 基础知识

@@ -5,12 +5,12 @@ import { getSortedBlogsData } from '../../lib/blog'
 import { BlogData } from '../../types'
 
 const blogs: NextPage<{ allBlogsData: BlogData[] }> = ({ allBlogsData }) => (
-    <Layout>
-      <Wrapper>
-        <Blogs blogs={allBlogsData} />
-      </Wrapper>
-    </Layout>
-  )
+  <Layout>
+    <Wrapper>
+      <Blogs blogs={allBlogsData} />
+    </Wrapper>
+  </Layout>
+)
 
 export default blogs
 

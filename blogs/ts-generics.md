@@ -1,6 +1,6 @@
 ---
-title: '试图理解 TypeScript 泛型'
-date: '2021-02-16'
+title: '[Pinned]试图理解 TypeScript 泛型'
+date: '2021-01-07'
 ---
 
 ## 1. 为了解决什么问题

@@ -1,6 +1,6 @@
 ---
-title: '钉钉小程序开发总结'
-date: '2020-10-16'
+title: '[Pinned]钉钉小程序开发总结'
+date: '2021-01-16'
 ---
 
 ### 一、概述
@@ -17,7 +17,7 @@ date: '2020-10-16'
 
 #### 2.1 由多个 webView 组成
 
->小程序在 web 上的渲染引擎是浏览器内核，作为小程序的核心组件，经过多方面的考虑，我们采用的是 UC 提供的浏览器内核，UC 的同学在浏览器内核的性能、稳定性和兼容性上做了大量的工作，比系统提供的 webview 提升了不少。 —— [支付宝小程序技术架构全解析](https://www.infoq.cn/article/ulletz7q_ue4duptkgkc)
+> 小程序在 web 上的渲染引擎是浏览器内核，作为小程序的核心组件，经过多方面的考虑，我们采用的是 UC 提供的浏览器内核，UC 的同学在浏览器内核的性能、稳定性和兼容性上做了大量的工作，比系统提供的 webview 提升了不少。 —— [支付宝小程序技术架构全解析](https://www.infoq.cn/article/ulletz7q_ue4duptkgkc)
 
 一个小程序由多个 `webView` 组成，利用 `system event`、`jsbridge` 与 `native` 通信
 
@@ -25,15 +25,15 @@ date: '2020-10-16'
 
 #### 2.2 逻辑与渲染分离
 
-一个线程渲染，一个线程处理逻辑，所以开发者不能直接接触到原生api以及直接操作DOM、BOM。
+一个线程渲染，一个线程处理逻辑，所以开发者不能直接接触到原生 api 以及直接操作 DOM、BOM。
 
->Worker 线程只是做一些计算然后把数据传递到UI线程，然后大部分工作都在UI下面执行，并且官方的组件在UI这边执行。 —— [小程序底层实现原理及一些思考](https://zhuanlan.zhihu.com/p/81775922)
+> Worker 线程只是做一些计算然后把数据传递到 UI 线程，然后大部分工作都在 UI 下面执行，并且官方的组件在 UI 这边执行。 —— [小程序底层实现原理及一些思考](https://zhuanlan.zhihu.com/p/81775922)
 
 ![image-20210818003610887](https://pic1.zhimg.com/80/v2-8ab2d8de3eee22e0ad602bb8090c4f8c_1440w.jpg)
 
 但支付宝声称他们进行了优化，`setData` 的对象会创建在全局的 `Global Runtime`/`Shared Heap` 里，以减少 render 和 worker 的通信成本。
 
->在新的隔离模型下，webview 里面的 v8 实例就是一个 Local Runtime，worker 线程里面的 v8 实例也是一个 Local Runtime，在 worker 层和 render 层交互时，setData 对象的会直接创建在 Shared Heap 里面，因此 render 层的 Local Runtime 可以直接读到该对象，并且用于 render 层的渲染，减少了对象的序列化和网络传输，极大的提升了启动性能和渲染性能。 —— [支付宝小程序技术架构全解析](https://www.infoq.cn/article/ulletz7q_ue4duptkgkc)
+> 在新的隔离模型下，webview 里面的 v8 实例就是一个 Local Runtime，worker 线程里面的 v8 实例也是一个 Local Runtime，在 worker 层和 render 层交互时，setData 对象的会直接创建在 Shared Heap 里面，因此 render 层的 Local Runtime 可以直接读到该对象，并且用于 render 层的渲染，减少了对象的序列化和网络传输，极大的提升了启动性能和渲染性能。 —— [支付宝小程序技术架构全解析](https://www.infoq.cn/article/ulletz7q_ue4duptkgkc)
 
 ![368b39](https://static.geekbang.org/infoq/5c6a6bc368b39.png)
 
@@ -49,8 +49,6 @@ date: '2020-10-16'
 
 ![p1-jj](https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/8/5/16c60a08fe7251ff~tplv-t2oaga2asx-watermark.awebp)
 
-
-
 ### 三、框架
 
 > 小程序提供了自己的视图层描述语言 AXML 和 ACSS，以及基于 JavaScript 的逻辑层框架，并在视图层与逻辑层间提供了数据传输和事件系统，让开发者能够专注于数据与逻辑。 —— [钉钉小程序开发文档](https://developers.dingtalk.com/document/app/overview-of-mini-program-framework)
@@ -60,7 +58,7 @@ date: '2020-10-16'
 ![image-20210815230723913](https://s3.bmp.ovh/imgs/2021/08/826a5bd8795a9adc.png)
 
 - 一个小程序是一个 `app` 实例，一个页面是一个 `page` 实例
--  `page` 四个文件必须具有相同的路径与文件名
+- `page` 四个文件必须具有相同的路径与文件名
 
 #### 3.2 配置
 
@@ -68,18 +66,19 @@ date: '2020-10-16'
 
 决定页面文件的路径、窗口表现、设置网络超时时间、设置多 tab 等。
 
-所有的配置项可以在这里找到：[app.json全局配置](https://developers.dingtalk.com/document/app/app-json-global-configuration)
+所有的配置项可以在这里找到：[app.json 全局配置](https://developers.dingtalk.com/document/app/app-json-global-configuration)
 
 ```json
 {
   "pages": [
-    "pages/activities/activities", // 注册页面
+    "pages/activities/activities" // 注册页面
   ],
   "window": {
     "defaultTitle": "八一学校工会", // 页面默认 title
     "backgroundColor": "#f6f8fa" // 页面默认背景颜色
   },
-  "tabBar": { // tabBar 相关配置
+  "tabBar": {
+    // tabBar 相关配置
     "textColor": "#666666",
     "selectedColor": "#D2401A",
     "backgroundColor": "#ffffff",
@@ -89,7 +88,7 @@ date: '2020-10-16'
         "pagePath": "pages/activities/activities",
         "icon": "images/tabBar/act.png",
         "activeIcon": "images/tabBar/act_hl.png"
-      },
+      }
     ]
   }
 }
@@ -114,34 +113,35 @@ date: '2020-10-16'
 
 ```js
 App({
-  onLaunch (options) {
+  onLaunch(options) {
     // 第一次打开时调用
     // 这个时候 page 还没有生成，不要在这里获取页面栈
-    const { query, path } = options;
-    const { corpId } = query;
+    const { query, path } = options
+    const { corpId } = query
   },
-  onShow (options) {
+  onShow(options) {
     // 从后台被scheme重新打开时调用
-    const { query, path } = options;
-    const { corpId } = query;
+    const { query, path } = options
+    const { corpId } = query
   },
-  onHide () {
+  onHide() {
     // 进入后台时调用
-    console.log('App hide');
+    console.log('App hide')
   },
-  onError (error) {
+  onError(error) {
     // 小程序执行出错时调用
-    console.log(error);
+    console.log(error)
   },
   globalData: {
-    foo: 'bar'
+    foo: 'bar',
   },
-  demo(){ // 全局方法
-  	console.log('hello, demo')
+  demo() {
+    // 全局方法
+    console.log('hello, demo')
     // 打印 app 实例
     console.log(this)
-	},
-});
+  },
+})
 ```
 
 - `getApp` 方法
@@ -160,7 +160,7 @@ console.log(app.globalData) // 获取 globalData
 Page({
   data: {
     // 页面第一次渲染使用的初始数据
-    title: "Dingtalk"
+    title: 'Dingtalk',
   },
   onLoad(query) {
     // 页面加载
@@ -189,12 +189,12 @@ Page({
     // 页面被拉到底部
   },
   onShareAppMessage() {
-   // 返回自定义分享信息
+    // 返回自定义分享信息
   },
   viewTap() {
     // 事件处理
     this.setData({
-      text: 'Set data for update.'
+      text: 'Set data for update.',
     })
   },
 })
@@ -238,7 +238,7 @@ Page({
 
 #### 3.9 自定义组件
 
-#####  3.9.1 注册&使用
+##### 3.9.1 注册&使用
 
 与 `page`实例一样需要四个文件描述，需要在 `json` 中定义，别的页面使用该组件需要先注册再使用
 
@@ -246,7 +246,7 @@ Page({
 {
   "component": true,
   "usingComponents": {
-    "c1":"../x/index"
+    "c1": "../x/index"
   }
 }
 ```
@@ -259,15 +259,15 @@ Page({
 Component({
   data: { counter: 0 },
   props: {
-    onCounterPlusOne: (data) => console.log(data),
+    onCounterPlusOne: data => console.log(data),
     extra: 'default extra',
   },
   methods: {
     plusOne() {
-      this.setData({ counter: this.data.counter + 1 });
+      this.setData({ counter: this.data.counter + 1 })
     },
   },
-});
+})
 ```
 
 ##### 3.9.3 生命周期
@@ -302,10 +302,10 @@ Component({
 1. 子组件调用父组件函数，方法名必须以 on 开头，否则会将其处理为字符串
 2. 不支持 promise.finally
 3. 引用外部组件库可能会出错，可尝试应用分包，比如 `import compact from 'lodash/compact'`
-4. lodash/floor，精度不起作用，改用` .toFixed(n) `以四舍五入
-5. 在页面栈获取其他页面的实例，直接用实例 ` setData ` 在真机是不起作用的，解决办法是在页面中定义修改数据的函数，再由页面实例调用这个函数
-6. `Canvas.drawImage` 要用他们的临时路径（他们的文档示例是错的，CDN 上的图片 draw 不出来😡）
-7. `dd.getImageInfo` 如果传的是线上地址，得到的 `filePath` 安卓端不能用在 `Canvas.drawImage` 中（iOS 可以😡），解决办法为传本地图片路径
+4. lodash/floor，精度不起作用，改用`.toFixed(n)`以四舍五入
+5. 在页面栈获取其他页面的实例，直接用实例 `setData` 在真机是不起作用的，解决办法是在页面中定义修改数据的函数，再由页面实例调用这个函数
+6. `Canvas.drawImage` 要用他们的临时路径（他们的文档示例是错的，CDN 上的图片 draw 不出来 😡）
+7. `dd.getImageInfo` 如果传的是线上地址，得到的 `filePath` 安卓端不能用在 `Canvas.drawImage` 中（iOS 可以 😡），解决办法为传本地图片路径
 8. 上传包体积不能超过 XXXM，否则会构建失败，解决办法是尝试重新安装依赖
 9. 网络请求报错 `xxx不在白名单内，请求失败`，解决方法在开发管理中添加相应的 `ip`
 10. 开发者工具时常抽风，预览的东西与代码不符，解决方法 清缓存、重启

@@ -30,6 +30,11 @@ export const getSortedBlogsData = () => {
   return allBlogsData.sort((a, b) => (moment(a.date).isBefore(b.date) ? 1 : -1))
 }
 
+export const getPinnedBlogsData = () => {
+  const allBlogs = getSortedBlogsData()
+  return allBlogs.filter(({ title }) => title.substring(0, 8) === '[Pinned]')
+}
+
 export const getBlogData = async (id: string) => {
   const fullPath = path.join(blogsDirectory, `${id}.md`)
   const fileContent = fs.readFileSync(fullPath, 'utf8')

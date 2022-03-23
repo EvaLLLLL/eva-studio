@@ -1,6 +1,6 @@
 ---
 title: 'TypeScript 工具类型'
-date: '2020-10-16'
+date: '2021-01-15'
 ---
 
 ```typescript

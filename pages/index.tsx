@@ -3,13 +3,13 @@ import styled from 'styled-components'
 import Image from 'next/image'
 import { Blogs, Layout, Projects, SectionHeader } from '../components'
 import { contacts, colors, projects as sideProjects } from '../lib'
-import { getSortedBlogsData } from '../lib/blog'
+import { getPinnedBlogsData } from '../lib/blog'
 import { BlogData, ProjectData } from '../types'
 
 const Home: NextPage<{
-  latestBlogs: BlogData[]
+  pinnedBlogs: BlogData[]
   latestProjects: ProjectData[]
-}> = ({ latestBlogs, latestProjects }) => (
+}> = ({ pinnedBlogs, latestProjects }) => (
   <Layout>
     <Wrapper>
       <InfosWrapper>
@@ -22,10 +22,10 @@ const Home: NextPage<{
           <Description>本站正在建设&迁移文档 / 欢迎错误指正&交流</Description>
         </Introduction>
 
-        <LatestBlogs>
-          <SectionHeader name="Latest blogs" href="/blogs" />
-          <Blogs blogs={latestBlogs} smaller={true} />
-        </LatestBlogs>
+        <PinnedBlogs>
+          <SectionHeader name="Pinned blogs" href="/blogs" />
+          <Blogs blogs={pinnedBlogs} smaller={true} />
+        </PinnedBlogs>
 
         <PinedProjects>
           <SectionHeader name="Pinned projects" href="/projects" />
@@ -57,10 +57,10 @@ const Home: NextPage<{
 export default Home
 
 export async function getStaticProps() {
-  const latestBlogs = getSortedBlogsData()?.slice(0, 3)
+  const pinnedBlogs = getPinnedBlogsData()
   const latestProjects = sideProjects.slice(0, 3)
   return {
-    props: { latestBlogs, latestProjects },
+    props: { pinnedBlogs, latestProjects },
   }
 }
 
@@ -74,7 +74,7 @@ const InfosWrapper = styled.div`
   flex: 1;
 `
 
-const LatestBlogs = styled.div`
+const PinnedBlogs = styled.div`
   text-align: center;
   margin-bottom: 24px;
   display: flex;
