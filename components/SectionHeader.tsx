@@ -28,6 +28,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   border-bottom: 1px solid ${colors.border};
   padding: 8px;
+  margin-bottom: 24px;
 `
 
 const Label = styled.div`

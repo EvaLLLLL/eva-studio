@@ -34,8 +34,6 @@ const IconWrapper = styled.div`
 `
 
 const Wrapper = styled.div<{ horizontal?: boolean }>`
-  margin-top: 24px;
-
   @media (max-width: 500px) {
     display: flex;
     flex-direction: column;

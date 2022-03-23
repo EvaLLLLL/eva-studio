@@ -1,5 +1,4 @@
 import React from 'react'
-import { NextComponentType } from 'next'
 import styled from 'styled-components'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,8 +7,12 @@ import { routes, colors } from '../lib'
 import { useRouter } from 'next/router'
 import { ToastHost } from './ToastHost'
 
-export const Layout: NextComponentType = ({ children }) => {
+export const Layout: React.FC<{ gobackVisible?: boolean }> = ({
+  children,
+  gobackVisible,
+}) => {
   const { pathname } = useRouter()
+  const router = useRouter()
 
   return (
     <Wrapper>
@@ -45,6 +48,13 @@ export const Layout: NextComponentType = ({ children }) => {
         </Menus>
       </Navigation>
 
+      {!gobackVisible ? null : (
+        <GobackButton onClick={() => router.back()}>
+          <Image src="/doubleleft.svg" width={24} height={24} alt="goback" />
+          <GobackLabel>Go Back</GobackLabel>
+        </GobackButton>
+      )}
+
       <ChildrenWrapper>{children}</ChildrenWrapper>
 
       <Footer>© 2022-present Eva</Footer>
@@ -62,6 +72,23 @@ const Wrapper = styled.div`
 
   @media (max-width: 500px) {
     width: auto;
+  }
+`
+
+const GobackButton = styled.div`
+  display: flex;
+  align-items: center;
+  font-style: italic;
+  font-weight: 300;
+  color: ${colors.text_2};
+  cursor: pointer;
+  margin-bottom: 6px;
+  padding: 0 24px;
+`
+
+const GobackLabel = styled.span`
+  &:hover {
+    color: ${colors.highlight};
   }
 `
 
@@ -85,6 +112,10 @@ const ChildrenWrapper = styled.div`
 
   &:hover::-webkit-scrollbar-thumb {
     background: #d8d8d8;
+  }
+
+  @media (max-width: 500px) {
+    margin-top: 12px;
   }
 `
 
@@ -132,6 +163,10 @@ const Navigation = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
+
+  @media (max-width: 500px) {
+    height: 60px;
+  }
 `
 
 const Footer = styled.div`

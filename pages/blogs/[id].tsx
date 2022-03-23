@@ -10,8 +10,6 @@ import remarkGfm from 'remark-gfm'
 import remarkParse from 'remark-parse'
 import styled from 'styled-components'
 import { colors } from '../../lib'
-import Image from 'next/image'
-import { useRouter } from 'next/router'
 
 const Blogs: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
   blogData,
@@ -19,7 +17,6 @@ const Blogs: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
   const { title, content, date } = blogData
   const markdownRef = React.useRef<HTMLDivElement>(null)
   const [markdownWidth, setMarkdownWidth] = React.useState(0)
-  const router = useRouter()
 
   React.useEffect(
     () => setMarkdownWidth(markdownRef.current?.clientWidth || 0),
@@ -27,12 +24,7 @@ const Blogs: NextPage<{ blogData: BlogData; params: { id: string } }> = ({
   )
 
   return (
-    <Layout>
-      <GobackButton onClick={() => router.back()}>
-        <Image src="/doubleleft.svg" width={24} height={24} alt="goback" />
-        <GobackLabel>Go Back</GobackLabel>
-      </GobackButton>
-
+    <Layout gobackVisible={true}>
       <Info>
         <Title>{title}</Title>
         <Date>{date}</Date>
@@ -95,12 +87,6 @@ const Info = styled.div`
   text-align: center;
 `
 
-const GobackLabel = styled.span`
-  &:hover {
-    color: ${colors.highlight};
-  }
-`
-
 const Title = styled.div`
   font-size: 24px;
   color: ${colors.text_1};
@@ -110,16 +96,6 @@ const Date = styled.div`
   font-size: 14px;
   color: ${colors.text_3};
   margin-top: 8px;
-`
-
-const GobackButton = styled.div`
-  display: flex;
-  align-items: center;
-  font-style: italic;
-  font-weight: 300;
-  color: ${colors.text_2};
-  cursor: pointer;
-  margin-bottom: 6px;
 `
 
 const SingleCode = styled.span`

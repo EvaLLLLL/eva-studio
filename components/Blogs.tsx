@@ -24,7 +24,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 24px;
 `
 
 const BlogItem = styled.div<{ smaller?: boolean }>`
