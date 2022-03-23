@@ -22,7 +22,7 @@ export const projects: ProjectData[] = [
     description:
       '基于 React / React-Router / Mobx / LeanCloud / Antd 的图床',
     icon: '/kaka.png',
-    address: 'https://eva_l.gitee.io/kaka-pic-website/#/',
+    address: 'http://eva_l.gitee.io/kaka-pic-website/#/',
   },
   {
     key: 'grape-book',
