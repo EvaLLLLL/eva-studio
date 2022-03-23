@@ -45,6 +45,7 @@ const Title = styled.div`
   color: ${colors.text_2};
   font-style: italic;
   cursor: pointer;
+  text-align: left;
 
   &:hover {
     color: ${colors.highlight};
@@ -55,4 +56,9 @@ const Date = styled.div`
   margin-right: 56px;
   color: ${colors.text_3};
   font-size: 14px;
+  white-space: nowrap;
+
+  @media (max-width: 500px) {
+    margin-right: 16px;
+  }
 `

@@ -35,6 +35,12 @@ const IconWrapper = styled.div`
 
 const Wrapper = styled.div<{ horizontal?: boolean }>`
   margin-top: 24px;
+
+  @media (max-width: 500px) {
+    display: flex;
+    flex-direction: column;
+  }
+
   ${props =>
     props.horizontal
       ? css`
@@ -57,6 +63,16 @@ const ProjectItem = styled.div<{ horizontal?: boolean }>`
 
   &:hover {
     background: ${colors.hoverBackground};
+  }
+
+  @media (max-width: 500px) {
+    padding: 12px;
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 500px) {
+    margin-right: 0 !important;
   }
 
   ${props =>
@@ -82,7 +98,7 @@ const ItemName = styled.div<{ horizontal?: boolean }>`
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 8px;
-
+  white-space: nowrap;
   ${props =>
     props.horizontal
       ? css`
