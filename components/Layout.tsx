@@ -17,7 +17,7 @@ export const Layout: React.FC<{ gobackVisible?: boolean }> = ({
   return (
     <Wrapper>
       <Head>
-        <title>W I P</title>
+        <title>EvaStudio</title>
         <link rel="icon" href="/lightning.svg" />
         <meta
           name="viewport"
