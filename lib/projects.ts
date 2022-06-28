@@ -9,6 +9,13 @@ export const projects: ProjectData[] = [
     address: 'https://github.com/EvaLLLLL/eva-studio',
   },
   {
+    key: 'typeorm-demo',
+    name: "TypeOrm with Next.js",
+    description: '基于 Next.js & TypeOrm 开发的增删查改 demo',
+    icon: '/typeorm.ico',
+    address: 'https://github.com/EvaLLLLL/pre-of-typeorm',
+  },
+  {
     key: 'coriander',
     name: '香菜 UI',
     description:
